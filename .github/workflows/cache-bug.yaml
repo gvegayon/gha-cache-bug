@@ -24,7 +24,7 @@ jobs:
               uses: actions/cache@v4
               id: cache-data
               with:
-                key: data-${{ matrix.id }}
+                key: data-${{ matrix.id }}-${{ hashFiles('.github/workflows/cache-bug.yaml') }}
                 path: ./data.rds
 
             - name: Generate data
@@ -33,7 +33,7 @@ jobs:
               run: |
                 # Matrix of size ~1 GB
                 id <- ${{ matrix.id }}
-                data <- floor(rep(id, 1.5e8) + runif(1.5e8)*.1)
+                data <- rep(id, 1.5e8) + runif(1.5e8)*.1
                 saveRDS(data, "data.rds", compress = FALSE)
 
             - name: Load the data
