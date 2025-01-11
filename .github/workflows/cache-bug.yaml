@@ -24,7 +24,7 @@ jobs:
               uses: actions/cache@v4
               id: cache-data
               with:
-                key: dataset-${{ matrix.id }}-${{ hashFiles('.github/workflows/cache-bug.yaml') }}
+                key: dataset-will-fail-${{ matrix.id }}-${{ hashFiles('.github/workflows/cache-bug.yaml') }}
                 path: ./data.rds
 
             - name: Generate data
