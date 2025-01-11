@@ -33,10 +33,10 @@ jobs:
               run: |
                 # Matrix of size ~1 GB
                 id <- ${{ matrix.id }}
-                data <- floor(rep(id, 1.5e8) + runif(1e8)*.1)
+                data <- floor(rep(id, 1.5e8) + runif(1.5e8)*.1)
                 saveRDS(data, "data.rds", compress = FALSE)
 
             - name: Load the data
-              run: Rscript --vanilla -e 'readRDS("data.rds") |> table()'
+              run: Rscript --vanilla -e 'readRDS("data.rds") |> head()'
                 
 
